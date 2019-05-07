@@ -44,7 +44,7 @@ export default class ListTable extends Component {
     const actionRender = () => {
       return (
         <Button style={styles.button} onClick={this.handleClick}>
-          修改
+          充值
         </Button>
       );
     };

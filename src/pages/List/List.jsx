@@ -11,7 +11,7 @@ export default class List extends Component {
     return (
       <div>
         <div className={styles.nav}>
-          <h2 className={styles.breadcrumb}>缴费信息管理</h2>
+          <h2 className={styles.breadcrumb}>费用信息</h2>
         </div>
         <SearchBar />
         <Container className={styles.container}>

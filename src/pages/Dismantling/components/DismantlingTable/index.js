@@ -4,45 +4,27 @@ import { Button, Table, Pagination, Message } from '@alifd/next';
 const mockData = [
   {
     number: '( 2018 ) 浙执77号',
-    reason: '拆迁',
-    date: '2018-10-10',
-    holder: '淘小宝',
-    department: '执行局',
+    
   },
   {
     number: '( 2018 ) 浙执78号',
-    reason: '赔偿',
-    date: '2018-10-10',
-    holder: '淘小宝',
-    department: '执行局',
+    
   },
   {
     number: '( 2018 ) 浙执79号',
-    reason: '绿化',
-    date: '2018-10-10',
-    holder: '淘小宝',
-    department: '执行局',
+    
   },
   {
     number: '( 2018 ) 浙执80号',
-    reason: '拆迁',
-    date: '2018-10-10',
-    holder: '淘小宝',
-    department: '执行局',
+   
   },
   {
     number: '( 2018 ) 浙执81号',
-    reason: '拆迁',
-    date: '2018-10-10',
-    holder: '淘小宝',
-    department: '执行局',
+    
   },
   {
     number: '( 2018 ) 浙执82号',
-    reason: '赔偿',
-    date: '2018-10-10',
-    holder: '淘小宝',
-    department: '执行局',
+   
   },
 ];
 
@@ -85,10 +67,22 @@ export default class DismantlingTable extends Component {
   };
 
   render() {
+    const actionRender = () => {
+      return (
+        <Button style={styles.button} onClick={this.handleClick}>
+         删除
+        </Button>        
+      );
+    };
+    const actionRender1 = () => {
+      return (
+        <Button style={styles.button} onClick={this.handleClick}>
+         修改
+        </Button>        
+      );
+    };
     const buttons = [
       '添加',
-      '修改',
-      '删除',
     ];
     return (
       <div style={styles.container}>
@@ -114,13 +108,15 @@ export default class DismantlingTable extends Component {
           <Table.Column align="center" title="账号" dataIndex="number" />
           <Table.Column align="center" title="姓名" dataIndex="name" />
           <Table.Column align="center" title="性别" dataIndex="sex" />
-          <Table.Column align="center" title="联系方式" dataIndex="number" />
+          <Table.Column align="center" title="联系方式" dataIndex="phone" />
           <Table.Column align="center" title="房屋信息" dataIndex="address" />
           <Table.Column
             align="center"
             title="身份证号码"
-            dataIndex="number"
+            dataIndex="IDnumber"
           />
+          <Table.Column align="center" title="结束" cell={actionRender} />
+          <Table.Column align="center" title="撤销" cell={actionRender1} />
         </Table>
         <div style={styles.pagination}>
           <Pagination

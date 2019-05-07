@@ -3,7 +3,7 @@
 // asideMenuConfig：侧边导航配置
 
 const headerMenuConfig = [
-  {
+ /* {
     name: '我的工作台',
     path: '/',
   },
@@ -18,7 +18,7 @@ const headerMenuConfig = [
   {
     name: '统计分析',
     path: '/analysis',
-  },
+  },*/
 ];
 
 // ICON 配置： https://ice.alibaba-inc.com/component/foundationsymbol
@@ -39,12 +39,12 @@ const asideMenuConfig = [
     icon: 'person',
   },
   {
-    name: '报修管理',
+    name: '维修管理',
     path: '/selfhelp',
     icon: 'exchange',
   },
   {
-    name: '缴费管理',
+    name: '费用管理',
     path: '/list',
     icon: 'ol-list',
   },

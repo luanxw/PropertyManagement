@@ -8,7 +8,7 @@ export default class NewCase extends Component {
     return (
       <div>
         <div className={styles.nav}>
-          <h2 className={styles.breadcrumb}>案件录入</h2>
+          <h2 className={styles.breadcrumb}>信息录入</h2>
         </div>
         <Container className={styles.container}>
           <Form />

@@ -1,54 +1,25 @@
 import React, { Component } from 'react';
-import { Table, Pagination, Message } from '@alifd/next';
+import { Button, Table, Pagination, Message } from '@alifd/next';
 
 const mockData = [
   {
-    number: '( 2018 ) 浙执1号',
-    applicant: '淘小宝',
-    execution: '某某公司',
-    department: '执行局',
-    holder: '淘小宝',
-    status: '业务庭分案',
+    number: '( 2018 ) 浙执1号', 
   },
   {
-    number: '( 2018 ) 浙执2号',
-    applicant: '淘小宝',
-    execution: '某某公司',
-    department: '执行局',
-    holder: '淘小宝',
-    status: '办理中',
+    number: '( 2018 ) 浙执2号', 
   },
   {
-    number: '( 2018 ) 浙执3号',
-    applicant: '淘小宝',
-    execution: '某某公司',
-    department: '执行局',
-    holder: '淘小宝',
-    status: '申请归档',
+    number: '( 2018 ) 浙执3号', 
   },
   {
-    number: '( 2018 ) 浙执4号',
-    applicant: '淘小宝',
-    execution: '某某公司',
-    department: '执行局',
-    holder: '淘小宝',
-    status: '申请报结',
+    number: '( 2018 ) 浙执4号',   
   },
   {
-    number: '( 2018 ) 浙执5号',
-    applicant: '淘小宝',
-    execution: '某某公司',
-    department: '执行局',
-    holder: '淘小宝',
-    status: '立案',
+    number: '( 2018 ) 浙执5号',  
   },
   {
     number: '( 2018 ) 浙执6号',
-    applicant: '淘小宝',
-    execution: '某某科技公司',
-    department: '执行局',
-    holder: '淘小宝',
-    status: '办理中',
+   
   },
 ];
 
@@ -71,8 +42,37 @@ export default class AllocationTable extends Component {
   };
 
   render() {
+    const actionRender = () => {
+      return (
+        <Button style={styles.button} onClick={this.handleClick}>
+         删除
+        </Button>        
+      );
+    };
+    const actionRender1 = () => {
+      return (
+        <Button style={styles.button} onClick={this.handleClick}>
+         修改
+        </Button>        
+      );
+    };
+    const buttons = [
+      '添加',
+    ];
     return (
       <div style={styles.container}>
+      <div style={styles.buttons}> {buttons.map((text, index) => {
+        return (
+          <Button
+            key={index}
+            style={styles.button}
+            onClick={() => this.handleClick(text)}
+          >
+            {text}
+          </Button>
+        );
+      })}
+    </div>
         <Table dataSource={mockData} primaryKey="number" style={styles.table}>
           <Table.Column align="center" title="账号" dataIndex="number" />
           <Table.Column align="center" title="姓名" dataIndex="name" />
@@ -82,10 +82,12 @@ export default class AllocationTable extends Component {
             title="使用情况"
             dataIndex="department"
           />
-          <Table.Column align="center" title="联系方式" dataIndex="number" />
-          <Table.Column align="center" title="价格" dataIndex="number" />
-          <Table.Column align="center" title="房屋格局信息" dataIndex="status" />
+          <Table.Column align="center" title="联系方式" dataIndex="phone" />
+          <Table.Column align="center" title="价格" dataIndex="much" />
+          <Table.Column align="center" title="房屋格局信息" dataIndex="text" />
           <Table.Column align="center" title="时间" dataIndex="time" />
+          <Table.Column align="center" title="结束" cell={actionRender} />
+          <Table.Column align="center" title="撤销" cell={actionRender1} />
         </Table>
         <div style={styles.pagination}>
           <Pagination
@@ -100,18 +102,18 @@ export default class AllocationTable extends Component {
 
 const styles = {
   container: {
-    margin: '0 20px',
-    letterSpacing: '2px',
+    margin: '0 50px',
+    letterSpacing: '1px',
   },
   button: {
-    margin: '0 8px',
+    margin: '0 2px',
     letterSpacing: '2px',
   },
   table: {
-    margin: '15px 0',
+    margin: '20px 0',
   },
   pagination: {
     textAlign: 'center',
-    marginBottom: '15px',
+    marginBottom: '10px',
   },
 };

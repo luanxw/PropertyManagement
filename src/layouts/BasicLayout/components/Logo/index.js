@@ -6,7 +6,7 @@ export default class Logo extends PureComponent {
   render() {
     return (
       <Link to="/" className={styleNames.logoStyle} style={this.props.style}>
-        智慧物业管理系统
+        智慧物业管理
       </Link>
     );
   }

@@ -119,7 +119,7 @@ export default class DonationForm extends Component {
               </div>
             </div>
             <div style={styles.formItem}>
-              <div style={styles.formLabel}>维修内容</div>
+              <div style={styles.formLabel}>维修信息</div>
               <IceFormBinder
                 required
                 triggerType="onBlur"
@@ -133,7 +133,7 @@ export default class DonationForm extends Component {
               </div>
             </div>
             <div style={styles.formItem}>
-              <div style={styles.formLabel}>报修时间</div>
+              <div style={styles.formLabel}>报修日期</div>
               <IceFormBinder name="time">
                 <DatePicker style={{ width: '400px' }} />
               </IceFormBinder>

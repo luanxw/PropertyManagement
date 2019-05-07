@@ -25,7 +25,7 @@ export default class BasicLayout extends Component {
 
     return (
       <div className={styleNames.iceAsideCustom}>
-        <div className={styleNames.iceAsideLogo}>LOGO</div>
+        <div className={styleNames.iceAsideLogo}></div>
         <Nav className={styleNames.iceNav} selectedKeys={[pathname]}>
           {Array.isArray(asideMenuConfig) &&
             asideMenuConfig.length > 0 &&
