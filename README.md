@@ -16,16 +16,3 @@
 - 通用组件: `src/components`
 - 页面文件: `src/pages`
 
-## 主题包
-
-#### 默认主题包
-
-- @icedesign/theme
-
-#### 可选主题包
-
-- @alifd/theme-1
-
-## 效果图
-
-![screenshot](https://img.alicdn.com/tfs/TB1w4vGw3HqK1RjSZFPXXcwapXa-2872-1580.png)
