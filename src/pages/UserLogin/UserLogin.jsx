@@ -45,7 +45,7 @@ class UserLogin extends Component {
       }
       console.log(values);
       Message.success('登录成功');
-      this.props.history.push('/');
+      this.props.history.push('/dashboard');
     });
   };
 

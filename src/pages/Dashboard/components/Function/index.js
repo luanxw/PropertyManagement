@@ -43,7 +43,7 @@ const mock = [
 
 export default class Function extends Component {
   handleClick = () => {
-    Message.success('可以使用 Iceworks 按需添加页面');
+    Message.success('可以按照需求添加数据');
   };
 
   render() {
