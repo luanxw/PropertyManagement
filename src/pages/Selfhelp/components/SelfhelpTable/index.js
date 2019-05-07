@@ -49,25 +49,11 @@ export default class SelfhelpTable extends Component {
         </Button>        
       );
     };
-    const buttons = [
-      '添加',
-    ];
     
     return (
       
       <div style={styles.container}>
-      <div style={styles.buttons}> {buttons.map((text, index) => {
-        return (
-          <Button
-            key={index}
-            style={styles.button}
-            onClick={() => this.handleClick(text)}
-          >
-            {text}
-          </Button>
-        );
-      })}
-    </div>
+      
         <SearchBar />
         <Table dataSource={mockData} primaryKey="number" style={styles.table}>
           <Table.Column align="center" title="账号" dataIndex="number" />

@@ -10,6 +10,7 @@ import Allocation from './pages/Allocation';
 import Selfhelp from './pages/Selfhelp';
 import List from './pages/List';
 import NewCase from './pages/NewCase';
+import AddAllocation from './pages/AddAllocation';
 
 const routerConfig = [
   {
@@ -43,6 +44,10 @@ const routerConfig = [
   {
     path: '/new',
     component: NewCase,
+  },
+  {
+    path: '/AddAllocation',
+    component: AddAllocation,
   },
 ];
 

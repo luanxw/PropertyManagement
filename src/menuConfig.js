@@ -54,8 +54,13 @@ const asideMenuConfig = [
   //   icon: 'copy',
   // },
   {
-    name: '检举反馈',
+    name: '维修报备',
     path: '/new',
+    icon: 'copy',
+  },
+  {
+    name: '房屋录入',
+    path: '/AddAllocation',
     icon: 'copy',
   },
 ];

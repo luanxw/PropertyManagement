@@ -37,7 +37,7 @@ const mockData = [
   },
   {
     img: checkIcon,
-    title: '检举反馈信息',
+    title: '维修信息',
     count: 1,
     backgroundColor: '#5e83fb',
   },
