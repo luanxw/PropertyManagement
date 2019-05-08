@@ -42,27 +42,35 @@ export default class SelfhelpTable extends Component {
 
   render() {
    
-    const actionRender = () => {
-      return (
-        <Button style={styles.button} onClick={this.handleClick}>
-         结束
-        </Button>        
-      );
-    };
-    
+      const actionRender = () => {
+        return (
+          <Button style={styles.button} onClick={this.actionRender}>
+           处理
+          </Button>        
+        );
+      };
+      const actionRender1 = () => {
+        return (
+          <Button style={styles.button} onClick={this.actionRender1}>
+           完成
+          </Button>        
+        );
+      };
+
     return (
       
       <div style={styles.container}>
       
         <SearchBar />
         <Table dataSource={mockData} primaryKey="number" style={styles.table}>
-          <Table.Column align="center" title="账号" dataIndex="number" />
+          <Table.Column align="center" title="姓名" dataIndex="number" />
           <Table.Column align="center" title="房屋信息" dataIndex="address" />
           <Table.Column align="center" title="联系人" dataIndex="name" />
           <Table.Column align="center" title="联系方式" dataIndex="phone" />
           <Table.Column align="center" title="维修信息" dataIndex="text" />
           <Table.Column align="center" title="报修日期" dataIndex="data" />
-          <Table.Column align="center" title="完成" cell={actionRender} />
+          <Table.Column align="center" title="维修" cell={actionRender} />
+          <Table.Column align="center" title="完成" cell={actionRender1} />
         </Table>
         <div style={styles.pagination}>
           <Pagination

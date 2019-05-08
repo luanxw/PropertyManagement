@@ -52,9 +52,9 @@ export default class ListTable extends Component {
     return (
       <div style={styles.container}>
         <Table dataSource={mockData} primaryKey="number" style={styles.table}>
-          <Table.Column align="center" title="账号" dataIndex="number" />
+          <Table.Column align="center" title="姓名" dataIndex="number" />
           <Table.Column align="center" title="房屋信息" dataIndex="address" />
-          <Table.Column align="center" title="姓名" dataIndex="name" />
+          <Table.Column align="center" title="邮箱" dataIndex="email" />
           <Table.Column align="center" title="联系方式" dataIndex="call" />
           <Table.Column align="center" title="身份证号" dataIndex="idcard" />
           <Table.Column align="center" title="费用" dataIndex="money" />

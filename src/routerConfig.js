@@ -11,7 +11,7 @@ import Selfhelp from './pages/Selfhelp';
 import List from './pages/List';
 import NewCase from './pages/NewCase';
 import AddAllocation from './pages/AddAllocation';
-
+import AddDashboard from './pages/AddDashboard';
 const routerConfig = [
   {
     path: '/user/login',
@@ -48,6 +48,10 @@ const routerConfig = [
   {
     path: '/AddAllocation',
     component: AddAllocation,
+  },
+  {
+    path: '/AddDashboard',
+    component: AddDashboard,
   },
 ];
 

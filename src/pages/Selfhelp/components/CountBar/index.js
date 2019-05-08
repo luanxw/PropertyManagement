@@ -2,27 +2,27 @@ import React, { Component } from 'react';
 import addIcon from './images/add.svg';
 import pcIcon from './images/pc.svg';
 import targetIcon from './images/target.svg';
-import uploadIcon from './images/uploading.svg';
+//import uploadIcon from './images/uploading.svg';
 
 const mockData = [
   {
     icon: targetIcon,
     title: '已提交维修信息',
     count: 12,
-    instrument: '对提交维修信息进行处理',
+    instrument: '用户已提交维修信息',
   },
   {
     icon: addIcon,
-    title: '一结束正在处理中',
+    title: '正在处理中',
     count: 3,
-    instrument: '对正在处理的维修进行查询',
+    instrument: '正在进行维修',
   },
-  {
-    icon: uploadIcon,
-    title: '已处理待确认',
-    count: 1,
-    instrument: '维修完成等待用户确认',
-  },
+  // {
+  //   icon: uploadIcon,
+  //   title: '已处理待确认',
+  //   count: 1,
+  //   instrument: '维修完成等待用户确认',
+  // },
   {
     icon: pcIcon,
     title: '已确认完成',

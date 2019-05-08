@@ -1,7 +1,7 @@
 /* eslint react/no-string-refs:0 */
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { Input, Button, Grid, Message } from '@alifd/next';
+import { Input, Button, Grid, Message, Checkbox , Dropdown, Menu, Select  } from '@alifd/next';
 import Icon from '@icedesign/foundation-symbol';
 import {
   FormBinderWrapper as IceFormBinderWrapper,
@@ -10,7 +10,27 @@ import {
 } from '@icedesign/form-binder';
 
 const { Row, Col } = Grid;
-
+const { Option } = Select;
+const menu = (
+  <Menu>
+      <Menu.Item> 1</Menu.Item>
+      <Menu.Item> 2</Menu.Item>
+      <Menu.Item> 3</Menu.Item>
+      <Menu.Item> 4</Menu.Item>
+      <Menu.Item> 5</Menu.Item>
+      <Menu.Item> 6</Menu.Item>
+      <Menu.Item> 7</Menu.Item>
+      <Menu.Item> 8</Menu.Item>
+  </Menu>
+);
+const menu1 = (
+  <Menu>
+      <Menu.Item> 1</Menu.Item>
+      <Menu.Item> 2</Menu.Item>
+      <Menu.Item> 3</Menu.Item>
+      <Menu.Item> 4</Menu.Item>
+  </Menu>
+);
 @withRouter
 class UserRegister extends Component {
   static displayName = 'UserRegister';
@@ -27,6 +47,12 @@ class UserRegister extends Component {
         email: '',
         passwd: '',
         rePasswd: '',
+        sex: '',
+        phone: '',
+        IDnumber: '',
+        build: '',
+        top: '',
+        room: '',
       },
     };
   }
@@ -100,6 +126,65 @@ class UserRegister extends Component {
               </Row>
 
               <Row className="formItem">
+              <Col>
+              <span style={styles.caseNumber}>
+              <Select
+        placeholder=""
+        style={{ ...styles.select, ...styles.input }}
+      >
+        <Option >男</Option>
+        <Option >女</Option>
+      </Select>
+      性别
+        </span>
+              </Col>
+            </Row>
+
+            <Row className="formItem">
+            <Col className="formItemCol">
+              <Icon type="" size="small" className="inputIcon" />
+              <IceFormBinder
+                type="build"
+                name="build"
+                required
+                message="请输入楼号"
+              >
+              <span style={styles.caseNumber}>
+              <Select
+        placeholder=""
+        style={{ ...styles.select, ...styles.input }}
+      >
+        <Option >1号</Option>
+        <Option >2号</Option>
+        <Option >3号</Option>
+        <Option >4号</Option>
+        <Option >5号</Option>
+        <Option >6号</Option>
+        <Option >7号</Option>
+        <Option >8号</Option>
+        <Option >9号</Option>
+      </Select>
+      楼
+      <Select
+      placeholder=""
+      style={{ ...styles.input, ...styles.shortInput }}
+    >
+      <Option >1</Option>
+      <Option >2</Option>
+      <Option >3</Option>
+    </Select>
+    单元
+    <Input style={{ ...styles.input, ...styles.shortInput }} />
+      房间
+    </span>
+              </IceFormBinder>
+            </Col>
+            <Col>
+              <IceFormError name="build" />
+            </Col>
+          </Row>
+          
+              <Row className="formItem">
                 <Col className="formItemCol">
                   <Icon type="mail" size="small" className="inputIcon" />
                   <IceFormBinder
@@ -167,6 +252,50 @@ class UserRegister extends Component {
                 </Col>
               </Row>
 
+
+              <Row className="formItem">
+                <Col className="formItemCol">
+                  <Icon type="phone" size="small" className="inputIcon" />
+                  <IceFormBinder
+                    type="phone"
+                    name="phone"
+                    required
+                    message="请输入11位手机号码"
+                  >
+                    <Input
+                      className="next-input-single"
+                      maxLength={20}
+                      placeholder="电话"
+                    />
+                  </IceFormBinder>
+                </Col>
+                <Col>
+                  <IceFormError name="phone" />
+                </Col>
+              </Row>              
+              <Row className="formItem">
+                <Col className="formItemCol">
+                  <Icon type="" size="small" className="inputIcon" />
+                  <IceFormBinder
+                    type="IDnumber"
+                    name="IDnumber"
+                    required
+                    message="请输入身份证号码"
+                  >
+                    <Input
+                      className="next-input-single"
+                      maxLength={20}
+                      placeholder="身份证号码"
+                    />
+                  </IceFormBinder>
+                </Col>
+                <Col>
+                  <IceFormError name="IDnumber" />
+                </Col>
+              </Row>
+
+             
+             
               <Row className="formItem">
                 <Button
                   type="primary"
@@ -191,3 +320,15 @@ class UserRegister extends Component {
 }
 
 export default UserRegister;
+const styles = {
+  input: {
+    margin: '0 4px',
+  },
+  select: {
+    verticalAlign: 'middle',
+    width: '40px',
+  },
+  shortInput: {
+    width: '60px',
+  },
+}

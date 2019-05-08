@@ -63,6 +63,10 @@ const asideMenuConfig = [
     path: '/AddAllocation',
     icon: 'copy',
   },
+  {
+    name: '公告录入',
+    path: '/AddDashboard',
+    icon: 'copy',
+  },
 ];
-
 export { headerMenuConfig, asideMenuConfig };

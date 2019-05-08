@@ -61,8 +61,8 @@ export default class AllocationTable extends Component {
       <div style={styles.container}>
     
         <Table dataSource={mockData} primaryKey="number" style={styles.table}>
-          <Table.Column align="center" title="账号" dataIndex="number" />
-          <Table.Column align="center" title="姓名" dataIndex="name" />
+          <Table.Column align="center" title="姓名" dataIndex="number" />
+          <Table.Column align="center" title="邮箱" dataIndex="name" />
           <Table.Column align="center" title="房屋地址" dataIndex="address" />
           <Table.Column
             align="center"

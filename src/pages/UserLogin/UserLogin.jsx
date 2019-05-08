@@ -111,7 +111,7 @@ class UserLogin extends Component {
                 <span className="tips-text" style={{ marginRight: '20px' }}>
                   管理员登录：admin/admin
                 </span>
-                <span className="tips-text">学生登录：user/user</span>
+                <span className="tips-text">用户登录：user/user</span>
               </p>
             </Row>
 

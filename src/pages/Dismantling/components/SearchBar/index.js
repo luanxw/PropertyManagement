@@ -13,7 +13,7 @@ export default class SearchBar extends Component {
       <div style={styles.container}>
         <span style={styles.caseNumber}>
           <label>
-            账号:
+            姓名:
             <Input style={{ ...styles.input, ...styles.input }} />
           </label>
           <Select

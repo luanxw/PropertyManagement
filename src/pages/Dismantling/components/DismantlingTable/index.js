@@ -84,15 +84,15 @@ export default class DismantlingTable extends Component {
     
     return (
       <div style={styles.container}>
-        
+       
         <Table
           dataSource={mockData}
           rowSelection={this.state.rowSelection}
           primaryKey="number"
           style={styles.table}
         >
-          <Table.Column align="center" title="账号" dataIndex="number" />
-          <Table.Column align="center" title="姓名" dataIndex="name" />
+          <Table.Column align="center" title="姓名" dataIndex="number" />
+          <Table.Column align="center" title="邮箱" dataIndex="email" />
           <Table.Column align="center" title="性别" dataIndex="sex" />
           <Table.Column align="center" title="联系方式" dataIndex="phone" />
           <Table.Column align="center" title="房屋信息" dataIndex="address" />
