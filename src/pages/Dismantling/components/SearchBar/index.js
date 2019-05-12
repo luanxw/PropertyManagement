@@ -1,22 +1,48 @@
 import React, { Component } from 'react';
-import { Input, Select, Button, Message } from '@alifd/next';
+import { Input, Select, Button, Message,Table } from '@alifd/next';
 
 const { Option } = Select;
 
+
+
 export default class SearchBar extends Component {
+ // const { AccountTable } = this.props.bindingData;
+
+
   handleClick = () => {
     Message.success('未搜索到符合条件的数据');
   };
 
+  
   render() {
+    // const actionRender = () => {
+    //   return (
+    //     <Button type="primary" onClick={this.handleClick }>
+    //     查
+    //     </Button>  
+    //   );
+    //   };
+
     return (
       <div style={styles.container}>
-        <span style={styles.caseNumber}>
-          <label>
-            姓名:
-            <Input style={{ ...styles.input, ...styles.input }} />
-          </label>
-          <Select
+      
+        
+        {/* <Table.Column align="" title="姓名" dataIndex="name"  /> */}
+         {/* <span style={styles.caseNumber}> 
+           <label> */}
+            {/* <Table.Column align="center" title="查询"  cell={actionRender} /> */}
+            {/* <Input style={{ ...styles.input, ...styles.input }} /> */}
+            {/* <Button
+            type="primary"
+            style={styles.button}
+            onClick={this.handleClick}
+          >
+            查询
+          </Button> */}
+           {/* </label>  */}
+         
+
+          {/* <Select
             placeholder=""
             style={{ ...styles.select, ...styles.input }}
           >
@@ -42,8 +68,8 @@ export default class SearchBar extends Component {
           单元
           <Input style={{ ...styles.input, ...styles.shortInput }} />
           房间
-        </span>
-        <span>
+        {/* </span> */}
+        {/* <span>
           <Button
             type="primary"
             style={styles.button}
@@ -51,8 +77,9 @@ export default class SearchBar extends Component {
           >
             查询
           </Button>
-        </span>
-      </div>
+        </span>  */}
+       
+      </div> 
     );
   }
 }

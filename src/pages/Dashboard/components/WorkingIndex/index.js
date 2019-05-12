@@ -10,7 +10,7 @@ export default class WorkingIndex extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.card}>
-          <h4 className={styles.title}>个人工作指标</h4>
+          <h4 className={styles.title}>维修统计</h4>
           <div className={styles.charts}>
             <BarChart />
             <GroupedBarChart />

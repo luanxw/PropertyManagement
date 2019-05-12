@@ -1,7 +1,7 @@
 /* eslint react/no-string-refs:0 */
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { Input, Button, Grid, Message, Checkbox , Dropdown, Menu, Select  } from '@alifd/next';
+import { Input, Button, Grid, Message, Checkbox , Dropdown, Menu, Select, Script  } from '@alifd/next';
 import Icon from '@icedesign/foundation-symbol';
 import {
   FormBinderWrapper as IceFormBinderWrapper,
@@ -11,26 +11,26 @@ import {
 
 const { Row, Col } = Grid;
 const { Option } = Select;
-const menu = (
-  <Menu>
-      <Menu.Item> 1</Menu.Item>
-      <Menu.Item> 2</Menu.Item>
-      <Menu.Item> 3</Menu.Item>
-      <Menu.Item> 4</Menu.Item>
-      <Menu.Item> 5</Menu.Item>
-      <Menu.Item> 6</Menu.Item>
-      <Menu.Item> 7</Menu.Item>
-      <Menu.Item> 8</Menu.Item>
-  </Menu>
-);
-const menu1 = (
-  <Menu>
-      <Menu.Item> 1</Menu.Item>
-      <Menu.Item> 2</Menu.Item>
-      <Menu.Item> 3</Menu.Item>
-      <Menu.Item> 4</Menu.Item>
-  </Menu>
-);
+// const menu = (
+//   <Menu>
+//       <Menu.Item> 1</Menu.Item>
+//       <Menu.Item> 2</Menu.Item>
+//       <Menu.Item> 3</Menu.Item>
+//       <Menu.Item> 4</Menu.Item>
+//       <Menu.Item> 5</Menu.Item>
+//       <Menu.Item> 6</Menu.Item>
+//       <Menu.Item> 7</Menu.Item>
+//       <Menu.Item> 8</Menu.Item>
+//   </Menu>
+// );
+// const menu1 = (
+//   <Menu>
+//       <Menu.Item> 1</Menu.Item>
+//       <Menu.Item> 2</Menu.Item>
+//       <Menu.Item> 3</Menu.Item>
+//       <Menu.Item> 4</Menu.Item>
+//   </Menu>
+// );
 @withRouter
 class UserRegister extends Component {
   static displayName = 'UserRegister';
@@ -154,17 +154,16 @@ class UserRegister extends Component {
         placeholder=""
         style={{ ...styles.select, ...styles.input }}
       >
-        <Option >1号</Option>
-        <Option >2号</Option>
-        <Option >3号</Option>
-        <Option >4号</Option>
-        <Option >5号</Option>
-        <Option >6号</Option>
-        <Option >7号</Option>
-        <Option >8号</Option>
-        <Option >9号</Option>
+        <Option >1</Option>
+        <Option >2</Option>
+        <Option >3</Option>
+        <Option >4</Option>
+        <Option >5</Option>
+        <Option >6</Option>
+        <Option >7</Option>
+        <Option >8</Option>
       </Select>
-      楼
+      号楼
       <Select
       placeholder=""
       style={{ ...styles.input, ...styles.shortInput }}
@@ -221,7 +220,7 @@ class UserRegister extends Component {
                   </IceFormBinder>
                 </Col>
                 <Col>
-                  <IceFormError name="passwd" />
+                  <IceFormError name="password" />
                 </Col>
               </Row>
 
@@ -248,7 +247,7 @@ class UserRegister extends Component {
                   </IceFormBinder>
                 </Col>
                 <Col>
-                  <IceFormError name="rePasswd" />
+                  <IceFormError name="rePassword" />
                 </Col>
               </Row>
 

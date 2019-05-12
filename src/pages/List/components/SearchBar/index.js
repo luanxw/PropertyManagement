@@ -11,7 +11,7 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <span style={styles.caseNumber}>
+        {/* <span style={styles.caseNumber}>
           <label>
           姓名:
             <Input style={{ ...styles.input, ...styles.input }} />
@@ -51,8 +51,8 @@ export default class SearchBar extends Component {
           >
             查询
           </Button>
-        </span>
-      </div>
+        </span>*/}
+      </div> 
     );
   }
 }

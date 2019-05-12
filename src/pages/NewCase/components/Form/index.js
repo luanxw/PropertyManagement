@@ -55,23 +55,39 @@ export default class DonationForm extends Component {
           ref="form"
         >
           <div style={styles.formContent}>
+
+
             <div style={styles.formItem}>
-              <div style={styles.formLabel}>房屋信息</div>
-              <IceFormBinder
-                required
-                triggerType="onBlur"
-                message="房屋信息不能为空"
-                name="address"
-              >
-                <Input
-                  placeholder="请输入房屋信息"
-                  style={{ width: '400px' }}
-                />
-              </IceFormBinder>
-              <div style={styles.formError}>
-                <IceFormError name="address" />
-              </div>
+            <span style={styles.caseNumber}>
+          <Select
+            placeholder=""
+            style={{ ...styles.select, ...styles.input }}
+          >
+            <Option >1</Option>
+            <Option >2</Option>
+            <Option >3</Option>
+            <Option >4</Option>
+            <Option >5</Option>
+            <Option >6</Option>
+            <Option >7</Option>
+            <Option >8</Option>
+            <Option >9</Option>
+          </Select>
+          号楼
+          <Select
+            placeholder=""
+            style={{ ...styles.input, ...styles.shortInput }}
+          >
+            <Option >1</Option>
+            <Option >2</Option>
+            <Option >3</Option>
+          </Select>
+          单元
+          <Input style={{ ...styles.input, ...styles.shortInput }} />
+          房间
+        </span>
             </div>
+            
             <div style={styles.formItem}>
               <div style={styles.formLabel}>联系方式</div>
               <IceFormBinder
@@ -89,6 +105,7 @@ export default class DonationForm extends Component {
                 <IceFormError name="phone" />
               </div>
             </div>
+
             <div style={styles.formItem}>
               <div style={styles.formLabel}>维修类别</div>
               <IceFormBinder name="cate">
@@ -126,7 +143,7 @@ export default class DonationForm extends Component {
                 message="维修内容不能为空"
                 name="maintenance"
               >
-                <Input placeholder="请输入维修内容" style={{ width: '400px' }} />
+                <Input.TextArea placeholder="请输入维修内容" style={{ width: '400px' }} />
               </IceFormBinder>
               <div style={styles.formError}>
                 <IceFormError name="maintenanc" />
@@ -188,5 +205,8 @@ const styles = {
   },
   submitButton: {
     marginLeft: '85px',
+  },
+  caseNumber: {
+    marginRight: '20px',
   },
 };

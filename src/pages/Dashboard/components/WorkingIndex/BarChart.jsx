@@ -4,15 +4,19 @@ import { Chart, Geom, Axis, Tooltip } from 'bizcharts';
 const mock = {
   index: [
     {
-      index: '收案数',
+      index: '水电',
       number: 290,
     },
     {
-      index: '结案数',
+      index: '门窗',
       number: 380,
     },
     {
-      index: '存案数',
+      index: '房屋',
+      number: 380,
+    },
+    {
+      index: '其他',
       number: 200,
     },
   ],
@@ -42,7 +46,7 @@ export default class BarChart extends Component {
     return (
       <div style={styles.container}>
         <h4 style={styles.average}>
-          平均执行天数: <span style={styles.number}>{mock.average}</span>
+          平均维修数量: <span style={styles.number}>{mock.average}</span>
         </h4>
         <Chart
           width={220}

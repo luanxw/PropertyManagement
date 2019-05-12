@@ -49,29 +49,45 @@ export default class DonationForm extends Component {
   render() {
     return (
       <IceContainer style={styles.container}>
-        <IceFormBinderWrapper
-          value={this.state.value}
-          onChange={this.formChange}
-          ref="form"
-        >
-          <div style={styles.formContent}>
+      <IceFormBinderWrapper
+        value={this.state.value}
+        onChange={this.formChange}
+        ref="form"
+      >
+        <div style={styles.formContent}>
+
+          
             <div style={styles.formItem}>
-              <div style={styles.formLabel}>房屋信息</div>
-              <IceFormBinder
-                required
-                triggerType="onBlur"
-                message="房屋信息不能为空"
-                name="address"
-              >
-                <Input
-                  placeholder="请输入房屋信息"
-                  style={{ width: '400px' }}
-                />
-              </IceFormBinder>
-              <div style={styles.formError}>
-                <IceFormError name="address" />
-              </div>
+            <span style={styles.caseNumber}>
+          <Select
+            placeholder=""
+            style={{ ...styles.select, ...styles.input }}
+          >
+            <Option >1</Option>
+            <Option >2</Option>
+            <Option >3</Option>
+            <Option >4</Option>
+            <Option >5</Option>
+            <Option >6</Option>
+            <Option >7</Option>
+            <Option >8</Option>
+            <Option >9</Option>
+          </Select>
+          号楼
+          <Select
+            placeholder=""
+            style={{ ...styles.input, ...styles.shortInput }}
+          >
+            <Option >1</Option>
+            <Option >2</Option>
+            <Option >3</Option>
+          </Select>
+          单元
+          <Input style={{ ...styles.input, ...styles.shortInput }} />
+          房间
+        </span>
             </div>
+
             <div style={styles.formItem}>
               <div style={styles.formLabel}>联系方式</div>
               <IceFormBinder
@@ -99,8 +115,6 @@ export default class DonationForm extends Component {
                 >
                   <Option value="1">使用</Option>
                   <Option value="2">空置</Option>
-                  <Option value="3">出租</Option>
-                  <Option value="other">售卖</Option>
                 </Select>
               </IceFormBinder>
             </div>
@@ -118,6 +132,7 @@ export default class DonationForm extends Component {
                 <IceFormError name="namer" />
               </div>
             </div>
+
             <div style={styles.formItem}>
               <div style={styles.formLabel}>房屋格局</div>
               <IceFormBinder
@@ -172,5 +187,8 @@ const styles = {
   },
   submitButton: {
     marginLeft: '85px',
+  },
+  caseNumber: {
+    marginRight: '10px',
   },
 };

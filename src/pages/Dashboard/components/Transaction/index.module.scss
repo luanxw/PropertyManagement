@@ -29,7 +29,7 @@
   justify-content: space-between;
 }
 .item {
-  width: 25%;
+  width: 60%;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -39,6 +39,7 @@
 .itemTitle {
   font-size: 12px;
   text-align: center;
+  width: 60px;
 }
 .image {
   width: 40px;

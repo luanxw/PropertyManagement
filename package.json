@@ -17,6 +17,7 @@
     "@alifd/theme-1": "^0.0.6",
     "@antv/data-set": "^0.9.6",
     "@icedesign/container": "^1.x",
+    "@icedesign/data-binder": "^1.0.4",
     "@icedesign/form-binder": "^1.x",
     "@icedesign/foundation-symbol": "^1.0.0",
     "@icedesign/img": "^1.x",
