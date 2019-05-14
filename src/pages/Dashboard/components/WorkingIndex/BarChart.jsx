@@ -1,57 +1,49 @@
 import React, { Component } from 'react';
 import { Chart, Geom, Axis, Tooltip } from 'bizcharts';
-
-const mock = {
-  index: [
-    {
-      index: '水电',
-      number: 290,
-    },
-    {
-      index: '门窗',
-      number: 380,
-    },
-    {
-      index: '房屋',
-      number: 380,
-    },
-    {
-      index: '其他',
-      number: 200,
-    },
-  ],
-  average: '45',
-};
+import DataBinder from '@icedesign/data-binder';
 
 const cols = {
   number: {
-    tickInterval: 100,
+    tickInterval: 1,
   },
 };
+@DataBinder({
+  AccountTable: {
+    url: 'http://localhost:8000/work/workcount',
+    method: 'get',
+    data: {
+      
+    },
+    defaultBindingData: {
+      data: {
+        data: []
+      },
+      
+    },
+  },
 
+})
 export default class BarChart extends Component {
-  formatAxis = (text) => {
-    return `${text}件`;
-  };
 
-  formatTooltip = (index, number) => {
-    return {
-      name: index,
-      title: index,
-      value: `${number}件`,
-    };
-  };
+  
+  componentDidMount() {
+    // 第一次渲染，初始化第一页的数据
+    const {AccountTable} = this.props.bindingData;
+    this.props.updateBindingData('AccountTable');
+  }
+  
 
   render() {
+    const { AccountTable } = this.props.bindingData;
     return (
       <div style={styles.container}>
         <h4 style={styles.average}>
-          平均维修数量: <span style={styles.number}>{mock.average}</span>
+       
         </h4>
         <Chart
-          width={220}
-          height={220}
-          data={mock.index}
+          width={420}
+          height={210}
+          data={AccountTable.data}
           scale={cols}
           padding={[40, 10, 40, 60]}
         >

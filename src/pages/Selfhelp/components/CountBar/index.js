@@ -3,39 +3,49 @@ import addIcon from './images/add.svg';
 import pcIcon from './images/pc.svg';
 import targetIcon from './images/target.svg';
 //import uploadIcon from './images/uploading.svg';
+import DataBinder from '@icedesign/data-binder';
 
-const mockData = [
-  {
-    icon: targetIcon,
-    title: '已提交维修信息',
-    count: 12,
-    instrument: '用户已提交维修信息',
-  },
-  {
-    icon: addIcon,
-    title: '正在处理中',
-    count: 3,
-    instrument: '正在进行维修',
-  },
-  // {
-  //   icon: uploadIcon,
-  //   title: '已处理待确认',
-  //   count: 1,
-  //   instrument: '维修完成等待用户确认',
-  // },
-  {
-    icon: pcIcon,
-    title: '已确认完成',
-    count: 12,
-    instrument: '维修已完成',
-  },
-];
 
+@DataBinder({
+  AccountTable: {
+    url: 'http://localhost:8000/work/allworkcount',
+    method: 'get',
+    data: {
+      
+    },
+    defaultBindingData: {
+      data: {
+        page: 1,
+        pageSize: 6,
+        total: 8,
+        size: 8
+      },
+      list: []
+    },
+  },
+
+})
 export default class CountBar extends Component {
+
+    componentDidMount() {
+      // 第一次渲染，初始化第一页的数据
+      const {AccountTable} = this.props.bindingData;
+    this.props.updateBindingData('AccountTable');
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataluan:  []
+    };
+    // this.changePage = this.changePage.bind(this)
+  }
   render() {
+
+    const { AccountTable } = this.props.bindingData;
+    
     return (
       <div style={styles.container}>
-        {mockData.map((item, index) => {
+        {AccountTable.list.map((item, index) => {
           return (
             <div style={styles.counter} key={index}>
               <div style={styles.card}>

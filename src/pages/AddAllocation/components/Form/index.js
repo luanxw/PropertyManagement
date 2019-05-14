@@ -7,10 +7,20 @@ import {
   FormBinder as IceFormBinder,
   FormError as IceFormError,
 } from '@icedesign/form-binder';
+import DataBinder from '@icedesign/data-binder';
 
 const { Option } = Select;
 const { Group: RadioGroup } = Radio;
 
+@DataBinder({
+  SaveUser: {
+    url: 'http://localhost:8000/room/savejson',
+    method: 'post',
+    data: {  
+    },
+  },
+
+})
 export default class DonationForm extends Component {
   static displayName = 'DonationForm';
 
@@ -35,15 +45,12 @@ export default class DonationForm extends Component {
   };
 
   validateAllFormField = () => {
-    this.refs.form.validateAll((errors, values) => {
-      if (errors) {
-        console.log({ errors });
-        Message.error('提交失败');
-        return;
-      }
-      console.log({ values });
-      Message.success('提交成功');
-    });
+    //  console.log(this.state.value)
+     this.props.updateBindingData('SaveUser', {
+      params: {
+        value: this.state.value,  
+      },
+    })
   };
 
   render() {
@@ -58,34 +65,50 @@ export default class DonationForm extends Component {
 
           
             <div style={styles.formItem}>
-            <span style={styles.caseNumber}>
-          <Select
-            placeholder=""
-            style={{ ...styles.select, ...styles.input }}
-          >
-            <Option >1</Option>
-            <Option >2</Option>
-            <Option >3</Option>
-            <Option >4</Option>
-            <Option >5</Option>
-            <Option >6</Option>
-            <Option >7</Option>
-            <Option >8</Option>
-            <Option >9</Option>
-          </Select>
-          号楼
-          <Select
-            placeholder=""
-            style={{ ...styles.input, ...styles.shortInput }}
-          >
-            <Option >1</Option>
-            <Option >2</Option>
-            <Option >3</Option>
-          </Select>
-          单元
-          <Input style={{ ...styles.input, ...styles.shortInput }} />
-          房间
-        </span>
+            <div style={styles.formLabel}>房屋地址</div>
+             <IceFormBinder
+                name="build"
+                required
+                message="请输入正确的房间号"
+              >
+              <Select
+                placeholder=""
+                style={{ ...styles.select, ...styles.input }}
+              >
+                  <Option  value="1号楼" >1</Option>
+                  <Option  value="2号楼">2</Option>
+                  <Option  value="3号楼">3</Option>
+                  <Option  value="4号楼">4</Option>
+                  <Option  value="5号楼">5</Option>
+                  <Option  value="6号楼">6</Option>
+                  <Option  value="7号楼">7</Option>
+                  <Option  value="8号楼">8</Option>
+              </Select>
+              </IceFormBinder>
+              <div style={styles.Label}>号楼</div>
+
+              <IceFormBinder
+                name="top"
+                required
+                message="请输入正确的房间号"
+              >
+              <Select
+                placeholder=""
+                style={{ ...styles.input, ...styles.shortInput }}
+              >
+                <Option value="1单元" >1</Option>
+                <Option value="2单元" >2</Option>
+                <Option value="3单元">3</Option>
+              </Select>
+              </IceFormBinder>
+              <div style={styles.Label}>单元</div>
+              <IceFormBinder
+                required
+                name="room"
+              >
+              <Input style={{ ...styles.shortInput }} />
+              </IceFormBinder>
+                <div style={styles.Label}>房间</div>
             </div>
 
             <div style={styles.formItem}>
@@ -109,14 +132,12 @@ export default class DonationForm extends Component {
             </div>
             <div style={styles.formItem}>
               <div style={styles.formLabel}>房屋状态</div>
-              <IceFormBinder name="cate">
+              <IceFormBinder name="take">
                 <Select
-                  placeholder="请选择"
-                  mode="multiple"
                   style={{ width: '400px' }}
                 >
-                  <Option value="1">使用</Option>
-                  <Option value="2">空置</Option>
+                  <Option value="使用">使用</Option>
+                  <Option value="空置">空置</Option>
                 </Select>
               </IceFormBinder>
             </div>
@@ -141,7 +162,7 @@ export default class DonationForm extends Component {
                 required
                 triggerType="onBlur"
                 message="格局内容不能为空"
-                name="maintenance"
+                name="type"
               >
                 <Input placeholder="请输入格局内容" style={{ width: '400px' }} />
               </IceFormBinder>

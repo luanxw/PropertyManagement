@@ -7,10 +7,19 @@ import {
   FormBinder as IceFormBinder,
   FormError as IceFormError,
 } from '@icedesign/form-binder';
+import DataBinder from '@icedesign/data-binder';
 
 const { Option } = Select;
 const { Group: RadioGroup } = Radio;
+@DataBinder({
+  SaveUser: {
+    url: 'http://localhost:8000/message/savejson',
+    method: 'post',
+    data: {  
+    },
+  },
 
+})
 export default class DonationForm extends Component {
   static displayName = 'DonationForm';
 
@@ -22,7 +31,6 @@ export default class DonationForm extends Component {
     super(props);
     this.state = {
       value: {
-        status: 'pending',
       },
     };
   }
@@ -35,15 +43,13 @@ export default class DonationForm extends Component {
   };
 
   validateAllFormField = () => {
-    this.refs.form.validateAll((errors, values) => {
-      if (errors) {
-        console.log({ errors });
-        Message.error('提交失败');
-        return;
-      }
-      console.log({ values });
-      Message.success('提交成功');
-    });
+    // console.log(this.state.value)
+    this.props.updateBindingData('SaveUser', {
+      params: {
+        value: this.state.value,  
+      },
+    })
+
   };
 
   render() {
@@ -51,8 +57,8 @@ export default class DonationForm extends Component {
       <IceContainer style={styles.container}>
         <IceFormBinderWrapper
           value={this.state.value}
-          onChange={this.formChange}
-          ref="form"
+          // onChange={this.formChange}
+          // ref="form"
         >
           <div style={styles.formContent}>
             <div style={styles.formItem}>
@@ -61,7 +67,7 @@ export default class DonationForm extends Component {
                 required
                 triggerType="onBlur"
                 message="主题信息不能为空"
-                name="text"
+                name="top"
               >
                 <Input
                   placeholder="请输入主题信息"
@@ -79,7 +85,7 @@ export default class DonationForm extends Component {
                 required
                 triggerType="onBlur"
                 message="公告内容不能为空"
-                name="maintenance"
+                name="text"
               >
                 <Input.TextArea placeholder="请输入公告内容" style={{ width: '400px' }} />
               </IceFormBinder>
@@ -89,9 +95,7 @@ export default class DonationForm extends Component {
             </div>
             <div style={styles.formItem}>
               <div style={styles.formLabel}>日期</div>
-              <IceFormBinder name="time">
                 <DatePicker style={{ width: '400px'}} />
-              </IceFormBinder>
             </div>
            
             <Button

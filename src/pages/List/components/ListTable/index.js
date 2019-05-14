@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DataBinder from '@icedesign/data-binder';
 import { Button, Table, Pagination, Message,Input, Field, Select } from '@alifd/next';
 const { Option } = Select;
 const mockData = [
@@ -76,7 +77,58 @@ const mockData = [
     electricity:'30',
   },
 ];
+@DataBinder({
+  MoneyTable: {
+    url: 'http://localhost:8000/money/pageall',
+    type: 'get',
+    data: {
+      page: 1,
+      pagesize: 6,
+    },
+    defaultBindingData: {
+      data: {
+        page: 1,
+        pageSize: 6,
+        total: 8,
+        size: 8
+      },
+      list: []
+    },
+    // defaultBindingData: {
+    //     data: []
+    // }
+  },
+  deleteGateway: {
+    url: 'http://127.0.0.1:9000/gateway/delete_by_id',
+    method: 'delete',
+    
+  },
+  SaveGateway: {
+    url: 'http://127.0.0.1:9000/gateway/save_gateway',
+    method: 'post',
+    
+  },
 
+  SearchUser: {
+    url: 'http://localhost:8000/user/query',
+      type: 'get',
+      data: {
+      page: 1,
+      pagesize: 6,
+    },
+    defaultBindingData: {
+      data: {
+        page: 1,
+        pageSize: 6,
+        total: 8,
+        size: 8
+      },
+      list: []
+    },
+  },
+
+
+})
 export default class ListTable extends Component {
   constructor(props) {
     super(props);
@@ -84,6 +136,12 @@ export default class ListTable extends Component {
       current: 1,
     };
   }
+
+  componentDidMount() {
+    // 第一次渲染，初始化第一页的数据
+   this.props.updateBindingData('MoneyTable');
+  // this.changePage(1)
+ }
 
   handleClick = () => {
     Message.success('暂不支持办理');
@@ -95,7 +153,35 @@ export default class ListTable extends Component {
     });
   };
 
+  changePage = (pageNo) => {
+    // 有些参数可能需要从数据中获取
+    const {MoneyTable} = this.props.bindingData;
+    this.props.updateBindingData('MoneyTable', {
+      params: {
+        ...MoneyTable.pagination,
+        pageNum: pageNo,
+        pagesize: 6,
+      },
+      // 通过设置这个数据，可以快速将页码切换，避免等接口返回才会切换页面
+      // 这里的变更是同步生效的
+      // 需要注意多层级数据更新的处理，避免丢掉某些数据
+      defaultBindingData: {
+        ...MoneyTable,
+        pagination: {
+          ...MoneyTable,
+          pageNum: pageNo,
+          pagesize: 6,
+        }
+      }
+    }
+      
+    );
+  };
+
   render() {
+
+    const { MoneyTable } = this.props.bindingData;
+
     const actionRender = () => {
       return (
         <Button style={styles.button} onClick={this.handleClick}>
@@ -145,20 +231,23 @@ export default class ListTable extends Component {
         </div>
      
 
-        <Table dataSource={mockData} primaryKey="name" style={styles.table}>
+        <Table dataSource={MoneyTable.list} primaryKey="name" style={styles.table}>
           <Table.Column align="center" title="姓名" dataIndex="name" />
           <Table.Column align="center" title="楼号" dataIndex="build" />
           <Table.Column align="center" title="单元" dataIndex="top" />
           <Table.Column align="center" title="房间" dataIndex="room" />
-          <Table.Column align="center" title="物业费用状态" dataIndex="property" />
+          <Table.Column align="center" title="物业费用状态"dataIndex="type" />
        
           <Table.Column align="center" title="操作" cell={actionRender} />
         </Table>
         <div style={styles.pagination}>
-          <Pagination
-            current={this.state.current}
-            onChange={this.onPageChange}
-          />
+        <Pagination 
+          current={MoneyTable.pageNum}
+          pageSize={MoneyTable.pageSize}
+          total={MoneyTable.total}
+          onChange={this.changePage}
+          style={{marginTop: 20}}
+        />
         </div>
       </div>
     );
