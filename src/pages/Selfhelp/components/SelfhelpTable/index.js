@@ -270,7 +270,7 @@ export default class SelfhelpTable extends Component {
           <Table.Column align="center" title="维修类型" dataIndex="worktype" />
           <Table.Column align="center" title="维修信息" dataIndex="worktext" />
           <Table.Column align="center" title="报修日期" dataIndex="date" />
-          <Table.Column align="center" title="维修" cell={actionRender} />
+          <Table.Column align="center" title="维修" dataIndex="type" />
           <Table.Column align="center" title="完成" cell={actionRender1} />
         </Table>
         <div style={styles.pagination}>
