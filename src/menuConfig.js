@@ -29,6 +29,11 @@ const asideMenuConfig = [
     icon: 'home',
   },
   {
+    name: '首页',
+    path: '/dashboarduser',
+    icon: 'home',
+  },
+  {
     name: '账号管理',
     path: '/dismantling',
     icon: 'cascades',

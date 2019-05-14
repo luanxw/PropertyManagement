@@ -93,11 +93,13 @@ export default class DonationForm extends Component {
               <IceFormBinder
                 required
                 triggerType="onBlur"
-                message="联系方式不能为空"
+                Length={11} 
+                message="请输入正确的11位手机号码"
                 name="phone"
               >
                 <Input
-                  placeholder="请输入联系方式"
+                  placeholder="请输入号码"
+                 
                   style={{ width: '400px' }}
                 />
               </IceFormBinder>
@@ -147,12 +149,12 @@ export default class DonationForm extends Component {
                 <IceFormError name="maintenanc" />
               </div>
             </div>
-            <div style={styles.formItem}>
+            {/* <div style={styles.formItem}>
               <div style={styles.formLabel}>日期</div>
               <IceFormBinder name="time">
                 <DatePicker style={{ width: '400px' }} />
               </IceFormBinder>
-            </div>
+            </div> */}
            
             <Button
               type="primary"

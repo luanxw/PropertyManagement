@@ -99,7 +99,7 @@ export default class ListTable extends Component {
     const actionRender = () => {
       return (
         <Button style={styles.button} onClick={this.handleClick}>
-          充值
+          已缴费
         </Button>
       );
     };
@@ -150,16 +150,8 @@ export default class ListTable extends Component {
           <Table.Column align="center" title="楼号" dataIndex="build" />
           <Table.Column align="center" title="单元" dataIndex="top" />
           <Table.Column align="center" title="房间" dataIndex="room" />
-          <Table.Column align="center" title="电话" dataIndex="phone" />
-          <Table.Column align="center" title="身份证号" dataIndex="IDnumber" />
-          <Table.Column
-            align="center"
-            title="线上/线下"
-            dataIndex="difficulty"
-          />
-          <Table.Column align="center" title="物业费" dataIndex="property" />
-          <Table.Column align="center" title="水费" dataIndex="water" />
-          <Table.Column align="center" title="电费" dataIndex="electricity" />
+          <Table.Column align="center" title="物业费用状态" dataIndex="property" />
+       
           <Table.Column align="center" title="操作" cell={actionRender} />
         </Table>
         <div style={styles.pagination}>

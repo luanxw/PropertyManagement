@@ -1,36 +1,28 @@
 /* eslint react/no-string-refs:0 */
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { Input, Button, Grid, Message, Checkbox , Dropdown, Menu, Select, Script  } from '@alifd/next';
-import Icon from '@icedesign/foundation-symbol';
+import { Input, Button, Grid, Message, Select, Script,Tag  } from '@alifd/next';
+import Icon  from '@icedesign/foundation-symbol';
 import {
   FormBinderWrapper as IceFormBinderWrapper,
   FormBinder as IceFormBinder,
   FormError as IceFormError,
 } from '@icedesign/form-binder';
-
+import DataBinder from '@icedesign/data-binder';
+ 
 const { Row, Col } = Grid;
 const { Option } = Select;
-// const menu = (
-//   <Menu>
-//       <Menu.Item> 1</Menu.Item>
-//       <Menu.Item> 2</Menu.Item>
-//       <Menu.Item> 3</Menu.Item>
-//       <Menu.Item> 4</Menu.Item>
-//       <Menu.Item> 5</Menu.Item>
-//       <Menu.Item> 6</Menu.Item>
-//       <Menu.Item> 7</Menu.Item>
-//       <Menu.Item> 8</Menu.Item>
-//   </Menu>
-// );
-// const menu1 = (
-//   <Menu>
-//       <Menu.Item> 1</Menu.Item>
-//       <Menu.Item> 2</Menu.Item>
-//       <Menu.Item> 3</Menu.Item>
-//       <Menu.Item> 4</Menu.Item>
-//   </Menu>
-// );
+//const {Group: TagGroup} = Tag;
+
+@DataBinder({
+  SaveUser: {
+    url: 'http://localhost:8000/user/savejson',
+    method: 'post',
+    data: {  
+    },
+  },
+
+})
 @withRouter
 class UserRegister extends Component {
   static displayName = 'UserRegister';
@@ -45,11 +37,11 @@ class UserRegister extends Component {
       value: {
         name: '',
         email: '',
-        passwd: '',
-        rePasswd: '',
+        password: '',
+        repassword: '',
         sex: '',
         phone: '',
-        IDnumber: '',
+        idnumber: '',
         build: '',
         top: '',
         room: '',
@@ -72,7 +64,7 @@ class UserRegister extends Component {
   checkPasswd2 = (rule, values, callback, stateValues) => {
     if (!values) {
       callback('请输入正确的密码');
-    } else if (values && values !== stateValues.passwd) {
+    } else if (values && values !== stateValues.password) {
       callback('两次输入密码不一致');
     } else {
       callback();
@@ -86,15 +78,42 @@ class UserRegister extends Component {
   };
 
   handleSubmit = () => {
-    this.refs.form.validateAll((errors, values) => {
-      if (errors) {
-        console.log('errors', errors);
-        return;
+    // console.log(this.state.value)
+    this.props.updateBindingData('SaveUser', {
+      params: {
+        // name: this.state.value.name,
+        // build: this.state.value.build,  
+        // top: this.state.value.top,  
+        // room: this.state.value.room,  
+        // email: this.state.value.email,  
+        // password: this.state.value.password,  
+        // repassword: this.state.value.repassword,  
+        // sex: this.state.value.sex,  
+        // phone: this.state.value.phone,  
+        // idnumber: this.state.value.idnumber, 
+        value: this.state.value,  
+      },
+     // 通过设置这个数据，可以快速将页码切换，避免等接口返回才会切换页面
+      // 这里的变更是同步生效的
+      // 需要注意多层级数据更新的处理，避免丢掉某些数据
+      defaultBindingData: {
+        
       }
-      console.log(values);
-      Message.success('注册成功');
-      this.props.history.push('/user/login');
-    });
+    },({success}) => {
+      if(success == null){
+        Message.error("服务器异常,请再试一次")
+      }else if(success == false){
+            //  Message.error(message)  
+      }else if(success == true){
+        Message.success('注册成功，请愉快的登录吧');
+        this.props.history.push('/user/login');
+    }
+      else{
+        Message.error("网络错误,请再试一次")
+      }
+    }
+    
+    );
   };
 
   render() {
@@ -111,7 +130,6 @@ class UserRegister extends Component {
               <Row className="formItem">
                 <Col className="formItemCol">
                   <Icon type="person" size="small" className="inputIcon" />
-
                   <IceFormBinder
                     name="name"
                     required
@@ -121,65 +139,83 @@ class UserRegister extends Component {
                   </IceFormBinder>
                 </Col>
                 <Col>
-                  <IceFormError name="name" />
+                  <IceFormError  />
                 </Col>
               </Row>
 
+              
               <Row className="formItem">
-              <Col>
-              <span style={styles.caseNumber}>
-              <Select
-        placeholder=""
-        style={{ ...styles.select, ...styles.input }}
-      >
-        <Option >男</Option>
-        <Option >女</Option>
-      </Select>
-      性别
-        </span>
+              <Col className="formItemCol">
+              <IceFormBinder
+                    name="sex"
+                    required
+                    message="请选择性别"
+                  >
+                  <Select
+                    placeholder=""
+                    className="next-input-single"
+                    style={{ width: '302px' }}
+                  >
+                    <Option  value="男"  >男</Option>
+                    <Option  value="女"  >女</Option>
+                  </Select>
+                
+                </IceFormBinder>
               </Col>
             </Row>
 
             <Row className="formItem">
             <Col className="formItemCol">
               <Icon type="" size="small" className="inputIcon" />
+
               <IceFormBinder
-                type="build"
                 name="build"
                 required
                 message="请输入楼号"
               >
-              <span style={styles.caseNumber}>
               <Select
-        placeholder=""
-        style={{ ...styles.select, ...styles.input }}
-      >
-        <Option >1</Option>
-        <Option >2</Option>
-        <Option >3</Option>
-        <Option >4</Option>
-        <Option >5</Option>
-        <Option >6</Option>
-        <Option >7</Option>
-        <Option >8</Option>
-      </Select>
-      号楼
-      <Select
-      placeholder=""
-      style={{ ...styles.input, ...styles.shortInput }}
-    >
-      <Option >1</Option>
-      <Option >2</Option>
-      <Option >3</Option>
-    </Select>
-    单元
-    <Input style={{ ...styles.input, ...styles.shortInput }} />
-      房间
-    </span>
+                  placeholder=""
+                  style={{ ...styles.select, ...styles.input }}
+                >
+                  <Option  value="1号楼" >1</Option>
+                  <Option  value="2号楼">2</Option>
+                  <Option  value="3号楼">3</Option>
+                  <Option  value="4号楼">4</Option>
+                  <Option  value="5号楼">5</Option>
+                  <Option  value="6号楼">6</Option>
+                  <Option  value="7号楼">7</Option>
+                  <Option  value="8号楼">8</Option>
+                </Select>
               </IceFormBinder>
-            </Col>
-            <Col>
-              <IceFormError name="build" />
+
+
+              <IceFormBinder
+                name="top"
+                required
+                message="请输入正确的单元号"
+              >
+                <Select
+                placeholder=""
+                style={{ ...styles.input, ...styles.shortInput }}
+              >
+                <Option value="1单元" >1</Option>
+                <Option value="2单元" >2</Option>
+                <Option value="3单元">3</Option>
+              </Select>
+              </IceFormBinder>
+
+            
+              <IceFormBinder
+                name="room"
+                required
+                message="请输入正确的房间号"
+              >
+                <Input
+                style={{ ...styles.input, ...styles.shortInput}}
+                  className="next-input-single"
+                  addonTextAfter="室" 
+                />
+              </IceFormBinder>
             </Col>
           </Row>
           
@@ -208,7 +244,7 @@ class UserRegister extends Component {
                 <Col className="formItemCol">
                   <Icon type="lock" size="small" className="inputIcon" />
                   <IceFormBinder
-                    name="passwd"
+                    name="password"
                     required
                     validator={this.checkPasswd}
                   >
@@ -228,7 +264,7 @@ class UserRegister extends Component {
                 <Col className="formItemCol">
                   <Icon type="lock" size="small" className="inputIcon" />
                   <IceFormBinder
-                    name="rePasswd"
+                    name="repassword"
                     required
                     validator={(rule, values, callback) =>
                       this.checkPasswd2(
@@ -247,7 +283,7 @@ class UserRegister extends Component {
                   </IceFormBinder>
                 </Col>
                 <Col>
-                  <IceFormError name="rePassword" />
+                  <IceFormError  />
                 </Col>
               </Row>
 
@@ -258,14 +294,22 @@ class UserRegister extends Component {
                   <IceFormBinder
                     type="phone"
                     name="phone"
-                    required
                     message="请输入11位手机号码"
                   >
-                    <Input
+                   <Input
                       className="next-input-single"
-                      maxLength={20}
-                      placeholder="电话"
+                      minLength={11}
+                      maxLength={11}
+                      placeholder="电话号码"
                     />
+                    {/* <Input
+                     minLength={11}
+                     maxLength={11}
+                    //  required
+                      className="next-input-single"
+                      // maxLength={20}
+                      placeholder="电话"
+                    /> */}
                   </IceFormBinder>
                 </Col>
                 <Col>
@@ -276,20 +320,20 @@ class UserRegister extends Component {
                 <Col className="formItemCol">
                   <Icon type="" size="small" className="inputIcon" />
                   <IceFormBinder
-                    type="IDnumber"
-                    name="IDnumber"
+                    type="idnumber"
+                    name="idnumber"
                     required
                     message="请输入身份证号码"
                   >
                     <Input
                       className="next-input-single"
-                      maxLength={20}
+                      maxLength={20}                      
                       placeholder="身份证号码"
                     />
                   </IceFormBinder>
                 </Col>
                 <Col>
-                  <IceFormError name="IDnumber" />
+                  <IceFormError name="idnumber" />
                 </Col>
               </Row>
 
@@ -324,10 +368,13 @@ const styles = {
     margin: '0 4px',
   },
   select: {
-    verticalAlign: 'middle',
-    width: '40px',
+    // verticalAlign: 'middle',
+    width: '100px',
   },
   shortInput: {
     width: '60px',
+  },
+  sex: {
+    width: '100px',
   },
 }

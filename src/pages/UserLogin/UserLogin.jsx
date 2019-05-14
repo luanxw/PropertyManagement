@@ -48,6 +48,18 @@ class UserLogin extends Component {
       this.props.history.push('/dashboard');
     });
   };
+  Submit = (e) => {
+    e.preventDefault();
+    this.refs.form.validateAll((errors, values) => {
+      if (errors) {
+        console.log('errors', errors);
+        return;
+      }
+      console.log(values);
+      Message.success('登录成功');
+      this.props.history.push('/dashboarduser');
+    });
+  };
 
   render() {
     return (
@@ -104,16 +116,23 @@ class UserLogin extends Component {
                 type="primary"
                 onClick={this.handleSubmit}
                 className="submitBtn"
-              >
-                登 录
+              > 管理员登录
               </Button>
-              <p className="account">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <Button
+                type="primary"
+                onClick={this.Submit}
+                className="submitBtn"
+              > 用户登录
+              </Button>
+              {/* <p className="account">
                 <span className="tips-text" style={{ marginRight: '20px' }}>
                   管理员登录：admin/admin
                 </span>
                 <span className="tips-text">用户登录：user/user</span>
-              </p>
+              </p> */}
             </Row>
+
 
             <Row className="tips">
               <Link to="/user/register" className="tips-text">

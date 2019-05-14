@@ -12,6 +12,7 @@ import List from './pages/List';
 import NewCase from './pages/NewCase';
 import AddAllocation from './pages/AddAllocation';
 import AddDashboard from './pages/AddDashboard';
+import Dashboarduser from './pages/Dashboarduser';
 const routerConfig = [
   {
     path: '/user/login',
@@ -52,6 +53,11 @@ const routerConfig = [
   {
     path: '/AddDashboard',
     component: AddDashboard,
+  },
+
+  {
+    path: '/dashboarduser',
+    component: Dashboarduser,
   },
 ];
 

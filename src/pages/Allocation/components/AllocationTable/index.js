@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Table, Pagination, Message, Dialog, 
-  Loading, Form, Input, Field, Select } from '@alifd/next';
+import { Button, Table, Pagination, Message,  Input,  Select } from '@alifd/next';
 import DataBinder from '@icedesign/data-binder';
+import { Label } from 'bizcharts';
 
 const { Option } = Select;
 @DataBinder({
@@ -34,7 +34,25 @@ const { Option } = Select;
     url: 'http://127.0.0.1:9000/gateway/save_gateway',
     method: 'post',
     
-  }
+  },
+
+  SearchRoom: {
+      url: 'http://localhost:8000/room/query',
+      type: 'get',
+      data: {
+      page: 1,
+      pagesize: 6,
+    },
+    defaultBindingData: {
+      data: {
+        page: 1,
+        pageSize: 6,
+        total: 8,
+        size: 8
+      },
+      list: []
+    },
+  },
 })
 
 
@@ -47,10 +65,52 @@ export default class AllocationTable extends Component {
 
   componentDidMount() {
     // 第一次渲染，初始化第一页的数据
-   this.props.updateBindingData('AccountTable');
+   //this.props.updateBindingData('AccountTable');
+   this.changePage(1)
  }
-
+ refresh = () => {
+  // 刷新功能，更新数据
+ this.props.updateBindingData('accountTable');
+};
   // static displayName = 'DismantlingTable';
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      build: '',
+      top: '',
+      room: '',
+      randerData: []
+    };
+    this.changePage = this.changePage.bind(this)
+  }
+  
+  nameInput = (e) =>{
+     console.log(e)
+    this.setState({
+      name: e,
+    })
+  }
+  buildInput = (e) =>{
+    //  console.log(e)
+    this.setState({
+      build: e,
+    })
+  }
+  topInput = (e) =>{
+    //  console.log(e)
+    this.setState({
+      top: e,
+    })
+  }
+  roomInput = (e) =>{
+    //  console.log(e)
+    this.setState({
+      room: e,
+    })
+  }
+
 
   changePage = (pageNo) => {
     // 有些参数可能需要从数据中获取
@@ -72,26 +132,70 @@ export default class AllocationTable extends Component {
           pagesize: 6,
         }
       }
-    });
+    },
+    ({data}) => {
+      if(data == null){
+        Message.error("网络错误")
+      }else{
+        this.setState({
+          randerData: [...data.list]
+        })
+      }
+    }   
+    );
+  };
+
+ searchRoom = (pageNo) => {
+    // 有些参数可能需要从数据中获取
+    this.props.updateBindingData('SearchRoom', {
+      params: {
+        name :this.state.name,
+        build :this.state.build,  
+        top :this.state.top,  
+        room :this.state.room,  
+      },
+      // 通过设置这个数据，可以快速将页码切换，避免等接口返回才会切换页面
+      // 这里的变更是同步生效的
+      // 需要注意多层级数据更新的处理，避免丢掉某些数据
+     }, ({data}) => {
+      console.log(data)
+      if(typeof JSON.stringify(data) == '{}'){
+        this.forceUpdate();
+        Message.error("网络错误！")
+        return
+      }
+      this.setState({
+        randerData: data
+      })
+    }
+
+    );
+    }
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     current: 1,
+  //   };
+  // }
+
+  onTableChange = (ids, records) => {
+    const { rowSelection } = this.state;
+    rowSelection.selectedRowKeys = ids;
+    console.log('onChange', ids, records);
+    this.setState({ rowSelection });
   };
 
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      current: 1,
-    };
-  }
-
   onPageChange = (current) => {
     this.setState({
-      current,
+      current2,
     });
   };
 
 
       render() {
-        const { AccountTable } = this.props.bindingData;
+        const { AccountTable ,searchRoom} = this.props.bindingData;
         const actionRender = () => {
           return (
             <Button  type="primary"
@@ -103,50 +207,63 @@ export default class AllocationTable extends Component {
      
 
     return (
-<div>
+  <div>
+    <div>
       <span>
       <label>
             姓名:
-            <Input style={{ ...styles.input, ...styles.input }} />
+            <Input style={{ ...styles.input, ...styles.input }}  placeholder="业主名称关键字" 
+            onChange={this.nameInput.bind(this)} name="username"
+            />
           </label>
      
         <Select
             placeholder=""
             style={{ ...styles.select, ...styles.input }}
+            name="build"
+            onChange={this.buildInput.bind(this)}
           >
-            <Option >1</Option>
-            <Option >2</Option>
-            <Option >3</Option>
-            <Option >4</Option>
-            <Option >5</Option>
-            <Option >6</Option>
-            <Option >7</Option>
-            <Option >8</Option>
-            <Option >9</Option>
+            <Option  value="1号楼">1</Option>
+            <Option  value="2号楼" >2</Option>
+            <Option  value="3号楼">3</Option>
+            <Option  value="4号楼">4</Option>
+            <Option  value="5号楼">5</Option>
+            <Option  value="6号楼">6</Option>
+            <Option  value="7号楼">7</Option>
+            <Option  value="8号楼">8</Option>
+            <Option  value="9号楼">9</Option>
           </Select>
           号楼
           <Select
             placeholder=""
             style={{ ...styles.input, ...styles.shortInput }}
+            name="top"
+            onChange={this.topInput.bind(this)}
           >
-            <Option >1</Option>
-            <Option >2</Option>
-            <Option >3</Option>
+            <Option  value="1单元">1</Option>
+            <Option  value="2单元">2</Option>
+            <Option  value="3单元">3</Option>
           </Select>
           单元
-          <Input style={{ ...styles.input, ...styles.shortInput }} />
+          <Input style={{ ...styles.input, ...styles.shortInput }}
+          onChange={this.roomInput.bind(this)}
+          name="room" />
           房间
        </span>
        &nbsp;  &nbsp;  &nbsp;
-        <Button type="primary" name="search">查询</Button>
+        <Button type="primary" name="search" onClick={this.searchRoom}>查询</Button>
         <div name="hahha">
           &nbsp;  &nbsp;  &nbsp;
         </div>
-     
+        </div>
 
 
     
-        <Table dataSource={AccountTable.list} primaryKey="name" style={styles.table}>
+        <Table   
+          dataSource={this.state.randerData} 
+          loading={this.state.randerData.__loading}
+          primaryKey="name" 
+          style={styles.table}>
           <Table.Column align="center" title="姓名" dataIndex="name" />
           <Table.Column align="center" title="楼号" dataIndex="build" />
           <Table.Column align="center" title="单元" dataIndex="top" />
@@ -156,7 +273,7 @@ export default class AllocationTable extends Component {
             title="使用情况"
             dataIndex="take"
           />
-          <Table.Column align="center" title="电话" dataIndex="phone" />
+          <Table.Column align="center" title="房屋面积" dataIndex="phone" />
           <Table.Column align="center" title="房屋格局" dataIndex="type" />
           <Table.Column align="center" title="时间" dataIndex="date" />
           <Table.Column align="center" title="结束" cell={actionRender} />
@@ -171,14 +288,6 @@ export default class AllocationTable extends Component {
           style={{marginTop: 20}}
         />
         </div>
-        {/* /* <Dialog visible={deleteComfirmDialogVisable}
-        onOk={this.onDeleteOk}
-        onCancel={this.onClose}
-        onClose={this.onClose}
-        title="确认身删除">
-        您确认要删除吗？
-        </Dialog> */}
-
         </div>   
     );
   }

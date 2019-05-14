@@ -36,7 +36,7 @@ const { Option } = Select;
     
   },
 
-  searchUser: {
+  SearchUser: {
     url: 'http://localhost:8000/user/query',
       type: 'get',
       data: {
@@ -62,14 +62,50 @@ export default class DismantlingTable extends Component {
 
   componentDidMount() {
     // 第一次渲染，初始化第一页的数据
-   this.props.updateBindingData('AccountTable');
+  //  this.props.updateBindingData('AccountTable');
+  this.changePage(1)
  }
  refresh = () => {
   // 刷新功能，更新数据
  this.props.updateBindingData('accountTable');
 };
 
- 
+constructor(props) {
+  super(props);
+  this.state = {
+    name: '',
+    build: '',
+    top: '',
+    room: '',
+    randerData: []
+  };
+  this.changePage = this.changePage.bind(this)
+}
+
+nameInput = (e) =>{
+   console.log(e)
+  this.setState({
+    name: e,
+  })
+}
+buildInput = (e) =>{
+  //  console.log(e)
+  this.setState({
+    build: e,
+  })
+}
+topInput = (e) =>{
+  //  console.log(e)
+  this.setState({
+    top: e,
+  })
+}
+roomInput = (e) =>{
+  //  console.log(e)
+  this.setState({
+    room: e,
+  })
+}
   changePage = (pageNo) => {
     // 有些参数可能需要从数据中获取
     const {AccountTable} = this.props.bindingData;
@@ -90,40 +126,64 @@ export default class DismantlingTable extends Component {
           pagesize: 6,
         }
       }
-    });
+    },
+    ({data}) => {
+      if(data == null){
+        Message.error("网络错误")
+      }else{
+        this.setState({
+          randerData: [...data.list]
+        })
+      }
+    }
+    
+    );
   };
 
-  // searchUser = (pageNo) => {
-  //   // 有些参数可能需要从数据中获取
-  //   const {searchUser} = this.props.bindingData;
-  //   this.props.updateBindingData('searchUser', {
-  //     params: {
-  //       name :this.props.userName.value,  
-  //       page: pageNo,
-  //       pagesize: 8,
-  //     },
-  //     // 通过设置这个数据，可以快速将页码切换，避免等接口返回才会切换页面
-  //     // 这里的变更是同步生效的
-  //     // 需要注意多层级数据更新的处理，避免丢掉某些数据
-  //   },
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      rowSelection: {
-        onChange: this.onTableChange.bind(this),
-        onSelect(selected, record, records) {
-          console.log('onSelect', selected, record, records);
-        },
-        onSelectAll(selected, records) {
-          console.log('onSelectAll', selected, records);
-        },
-        selectedRowKeys: [],
-        mode: 'single',
+  searchUser = (pageNo) => {
+    // 有些参数可能需要从数据中获取
+    this.props.updateBindingData('SearchUser', {
+      params: {
+        name :this.state.name,
+        build :this.state.build,  
+        top :this.state.top,  
+        room :this.state.room,  
       },
-      current: 2,
-    };
-  }
+      // 通过设置这个数据，可以快速将页码切换，避免等接口返回才会切换页面
+      // 这里的变更是同步生效的
+      // 需要注意多层级数据更新的处理，避免丢掉某些数据
+     }, ({data}) => {
+      console.log(data)
+      if(typeof JSON.stringify(data) == '{}'){
+        this.forceUpdate();
+        Message.error("网络错误！")
+        return
+      }
+      this.setState({
+        randerData: data
+      })
+    }
+
+    );
+    }
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     rowSelection: {
+  //       onChange: this.onTableChange.bind(this),
+  //       onSelect(selected, record, records) {
+  //         console.log('onSelect', selected, record, records);
+  //       },
+  //       onSelectAll(selected, records) {
+  //         console.log('onSelectAll', selected, records);
+  //       },
+  //       selectedRowKeys: [],
+  //       mode: 'single',
+  //     },
+  //     current: 2,
+  //   };
+  // }
   
 
   onTableChange = (ids, records) => {
@@ -146,8 +206,7 @@ export default class DismantlingTable extends Component {
 
   render() {
 
-    const { AccountTable } = this.props.bindingData;
-    //const { searchUser} = this.props.bindingData;
+    const { AccountTable ,SearchUser} = this.props.bindingData;
     const actionRender = () => {
       return (
         <Button type="primary" onClick={this.handleClick }>
@@ -161,45 +220,48 @@ export default class DismantlingTable extends Component {
       <div>
 
       <div>
-     {/* < Table
-          dataSource={ searchUser.list}
-          primaryKey="name"
-          style={styles.table}
-        > */}
+    
       <span>
         <label>
             姓名:
-            <Input style={{ ...styles.input, ...styles.input }} />
+            <Input style={{ ...styles.input, ...styles.input }}  placeholder="业主名称关键字" 
+            onChange={this.nameInput.bind(this)} name="username" />
           </label>
         <Select
             placeholder=""
             style={{ ...styles.select, ...styles.input }}
+            name="build"
+            onChange={this.buildInput.bind(this)}
           >
-            <Option >1</Option>
-            <Option >2</Option>
-            <Option >3</Option>
-            <Option >4</Option>
-            <Option >5</Option>
-            <Option >6</Option>
-            <Option >7</Option>
-            <Option >8</Option>
-            <Option >9</Option>
+            <Option  value="1号楼">1</Option>
+            <Option  value="2号楼" >2</Option>
+            <Option  value="3号楼">3</Option>
+            <Option  value="4号楼">4</Option>
+            <Option  value="5号楼">5</Option>
+            <Option  value="6号楼">6</Option>
+            <Option  value="7号楼">7</Option>
+            <Option  value="8号楼">8</Option>
+            <Option  value="9号楼">9</Option>
           </Select>
           号楼
           <Select
             placeholder=""
             style={{ ...styles.input, ...styles.shortInput }}
+            name="top"
+            onChange={this.topInput.bind(this)}
           >
-            <Option >1</Option>
-            <Option >2</Option>
-            <Option >3</Option>
+            <Option  value="1单元">1</Option>
+            <Option  value="2单元">2</Option>
+            <Option  value="3单元">3</Option>
           </Select>
           单元
-          <Input style={{ ...styles.input, ...styles.shortInput }} />
+          <Input style={{ ...styles.input, ...styles.shortInput }}
+           onChange={this.roomInput.bind(this)}
+          name="room"/>
           房间
        </span>
        &nbsp;  &nbsp;  &nbsp;
-        <Button type="primary" name="search">查询</Button>
+        <Button type="primary" name="search" onClick={this.searchUser}>查询</Button>
         <div name="hahha">
           &nbsp;  &nbsp;  &nbsp;
         </div>
@@ -207,7 +269,8 @@ export default class DismantlingTable extends Component {
       </div>
 
         <Table
-          dataSource={AccountTable.list}
+         dataSource={this.state.randerData} 
+          loading={this.state.randerData.__loading}
           primaryKey="name"
           style={styles.table} >
           <Table.Column align="center" title="姓名" dataIndex="name" />
@@ -229,17 +292,6 @@ export default class DismantlingTable extends Component {
           style={{marginTop: 20}}
         />
         </div>
-
-
-        {/* <div style={styles.pagination}>
-        <Pagination 
-          current={ searchUser.pageNum}
-          pageSize={ searchUser.pageSize}
-          total={ searchUser.total}
-          onChange={this.changePage}
-          style={{marginTop: 20}}
-        />
-        </div> */}
 
              </div>
     );
