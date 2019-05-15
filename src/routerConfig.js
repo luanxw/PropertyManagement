@@ -13,6 +13,13 @@ import NewCase from './pages/NewCase';
 import AddAllocation from './pages/AddAllocation';
 import AddDashboard from './pages/AddDashboard';
 import Dashboarduser from './pages/Dashboarduser';
+import Gonggao1 from './pages/Gonggao1';
+import Gonggao2 from './pages/Gonggao2';
+import Gonggao3 from './pages/Gonggao3';
+import Gonggao4 from './pages/Gonggao4';
+import Gonggao5 from './pages/Gonggao5';
+import Gonggao6 from './pages/Gonggao6';
+
 const routerConfig = [
   {
     path: '/user/login',
@@ -58,6 +65,30 @@ const routerConfig = [
   {
     path: '/dashboarduser',
     component: Dashboarduser,
+  },
+  {
+    path: '/Gonggao1',
+    component: Gonggao1,
+  },
+  {
+    path: '/Gonggao2',
+    component: Gonggao2,
+  },
+  {
+    path: '/Gonggao3',
+    component: Gonggao3,
+  },
+  {
+    path: '/Gonggao4',
+    component: Gonggao4,
+  },
+  {
+    path: '/Gonggao5',
+    component: Gonggao5,
+  },
+  {
+    path: '/Gonggao6',
+    component: Gonggao6,
   },
 ];
 

@@ -3,22 +3,22 @@
 // asideMenuConfig：侧边导航配置
 
 const headerMenuConfig = [
- /* {
-    name: '我的工作台',
-    path: '/',
-  },
-  {
-    name: '业务办理',
-    path: '/business',
-  },
-  {
-    name: '案件查询',
-    path: '/query',
-  },
-  {
-    name: '统计分析',
-    path: '/analysis',
-  },*/
+//  /* {
+//     name: '我的工作台',
+//     path: '/',
+//   },
+//   {
+//     name: '业务办理',
+//     path: '/business',
+//   },
+//   {
+//     name: '案件查询',
+//     path: '/query',
+//   },
+//   {
+//     name: '统计分析',
+//     path: '/analysis',
+//   },*/
 ];
 
 // ICON 配置： https://ice.alibaba-inc.com/component/foundationsymbol
@@ -33,16 +33,16 @@ const asideMenuConfig = [
     path: '/dashboarduser',
     icon: 'home',
   },
-  {
-    name: '账号管理',
-    path: '/dismantling',
-    icon: 'cascades',
-  },
-  {
-    name: '房屋管理',
-    path: '/allocation',
-    icon: 'person',
-  },
+  // {
+  //   name: '账号管理',
+  //   path: '/dismantling',
+  //   icon: 'cascades',
+  // },
+  // {
+  //   name: '房屋管理',
+  //   path: '/allocation',
+  //   icon: 'person',
+  // },
   {
     name: '维修管理',
     path: '/selfhelp',
@@ -73,5 +73,35 @@ const asideMenuConfig = [
     path: '/AddDashboard',
     icon: 'copy',
   },
+  // {
+  //   name: '公告信息',
+  //   path: '/Gonggao1',
+  //   icon: 'copy',
+  // },
+  // {
+  //   name: '公告信息',
+  //   path: '/Gonggao2',
+  //   icon: 'copy',
+  // },
+  // {
+  //   name: '公告信息',
+  //   path: '/Gonggao3',
+  //   icon: 'copy',
+  // },
+  // {
+  //   name: '公告信息',
+  //   path: '/Gonggao4',
+  //   icon: 'copy',
+  // },
+  // {
+  //   name: '公告信息',
+  //   path: '/Gonggao5',
+  //   icon: 'copy',
+  // },
+  // {
+  //   name: '公告信息',
+  //   path: '/Gonggao6',
+  //   icon: 'copy',
+  // },
 ];
 export { headerMenuConfig, asideMenuConfig };

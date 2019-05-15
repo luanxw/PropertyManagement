@@ -11,6 +11,7 @@ export default class Dashboarduser extends Component {
       <div style={styles.container}>
         <InfoWindow />          
         <WorkingCalendar />
+        <Transaction />
       </div>
     );
   }

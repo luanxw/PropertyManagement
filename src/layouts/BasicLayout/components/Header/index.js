@@ -144,10 +144,10 @@ export default class Header extends Component {
                 />
                 <div className={styleName['user-profile']}>
                   <span className="user-name" style={{ fontSize: '13px' }}>
-                    姓名
+                   
                   </span>
                   <br />
-                  <span className={styleName['user-department']}>用户</span>
+                  <span className={styleName['user-department']}></span>
                 </div>
                 <Icon
                   type="arrow-down"
@@ -162,7 +162,7 @@ export default class Header extends Component {
             <ul>
               <li className={styleName['user-profile-menu-item']}>
                 <Link to="/user/login">
-                  <Icon type="compass" size="small" />
+                  <Icon type="actor" size="small" />
                   退出
                 </Link>
               </li>

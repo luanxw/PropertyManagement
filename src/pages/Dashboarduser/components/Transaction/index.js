@@ -41,28 +41,28 @@ import { withRouter, Link } from 'react-router-dom';
 
 // ];
 
-const user ={
-  img: linkIcon,
-  title: '账号信息',
-  count: 1,
-  backgroundColor: '#5e83fb',
-} ;
+// const user ={
+//   img: linkIcon,
+//   title: '账号信息',
+  
+//   backgroundColor: '#5e83fb',
+// } ;
 const feiyong ={
   img: recoveryIcon,
     title: '费用信息',
-    count: 3,
+ 
     backgroundColor: '#f7da47',
 } ;
-const fangwu ={
-  img: refuseIcon,
-  title: '房屋信息',
-  count: 0,
-  backgroundColor: '#58ca9a',
-} ;
+// const fangwu ={
+//   img: refuseIcon,
+//   title: '房屋信息',
+  
+//   backgroundColor: '#58ca9a',
+// } ;
 const weixiu ={
   img: checkIcon,
     title: '维修信息',
-    count: 2,
+    
     backgroundColor: '#5e83fb',
 } ;
 
@@ -71,16 +71,16 @@ const weixiu ={
 class Transaction extends Component {
 
 
-  handleClicktest= (e) =>{
-    this.props.history.push('/dismantling');
-  };
+  // handleClicktest= (e) =>{
+  //   this.props.history.push('/dismantling');
+  // };
 
   handleClicktest1= (e) =>{
     this.props.history.push('/list');
   };
-  handleClicktest2= (e) =>{
-    this.props.history.push('/allocation');
-  };
+  // handleClicktest2= (e) =>{
+  //   this.props.history.push('/allocation');
+  // };
   handleClicktest3= (e) =>{
     this.props.history.push('/selfHelp');
   };
@@ -116,7 +116,7 @@ class Transaction extends Component {
             })} */}
          
 
-              <div>
+              {/* <div>
                 <div
                   className={styles.item}
                   onClick ={this.handleClicktest}   
@@ -134,7 +134,7 @@ class Transaction extends Component {
                   <span className={styles.count}>{user.count}</span>
                 </p>
               </div>
-              </div>
+              </div> */}
 
               <div>
                 <div
@@ -156,7 +156,7 @@ class Transaction extends Component {
               </div>
               </div>
 
-              <div>
+              {/* <div>
                 <div
                   className={styles.item}
                   onClick ={this.handleClicktest2}   
@@ -174,7 +174,7 @@ class Transaction extends Component {
                   <span className={styles.count}>{fangwu.count}</span>
                 </p>
               </div>
-              </div>
+              </div> */}
 
               <div>
                 <div

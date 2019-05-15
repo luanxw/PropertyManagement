@@ -71,6 +71,7 @@ export default class DonationForm extends Component {
                 required
                 message="请输入正确的房间号"
               >
+              
               <Select
                 placeholder=""
                 style={{ ...styles.select, ...styles.input }}
@@ -102,6 +103,7 @@ export default class DonationForm extends Component {
               </Select>
               </IceFormBinder>
               <div style={styles.Label}>单元</div>
+
               <IceFormBinder
                 required
                 name="room"

@@ -146,6 +146,7 @@ class UserRegister extends Component {
               
               <Row className="formItem">
               <Col className="formItemCol">
+
               <IceFormBinder
                     name="sex"
                     required
@@ -154,14 +155,19 @@ class UserRegister extends Component {
                   <Select
                     placeholder=""
                     className="next-input-single"
-                    style={{ width: '302px' }}
+                    style={{ width: '62px' }}
+                    addonTextAfter="性别" 
+                    className="next-input-single"
                   >
                     <Option  value="男"  >男</Option>
                     <Option  value="女"  >女</Option>
-                  </Select>
-                
+                  </Select>         
+                     
                 </IceFormBinder>
+
+                
               </Col>
+             
             </Row>
 
             <Row className="formItem">
@@ -176,6 +182,8 @@ class UserRegister extends Component {
               <Select
                   placeholder=""
                   style={{ ...styles.select, ...styles.input }}
+                  className="next-input-single"
+                  addonTextAfter="楼号" 
                 >
                   <Option  value="1号楼" >1</Option>
                   <Option  value="2号楼">2</Option>
@@ -187,8 +195,8 @@ class UserRegister extends Component {
                   <Option  value="8号楼">8</Option>
                 </Select>
               </IceFormBinder>
-
-
+             
+              &nbsp; &nbsp; &nbsp;
               <IceFormBinder
                 name="top"
                 required
@@ -197,14 +205,15 @@ class UserRegister extends Component {
                 <Select
                 placeholder=""
                 style={{ ...styles.input, ...styles.shortInput }}
+                addonTextAfter="单元"
               >
                 <Option value="1单元" >1</Option>
                 <Option value="2单元" >2</Option>
                 <Option value="3单元">3</Option>
               </Select>
               </IceFormBinder>
-
             
+              &nbsp; &nbsp; &nbsp;
               <IceFormBinder
                 name="room"
                 required
@@ -213,9 +222,11 @@ class UserRegister extends Component {
                 <Input
                 style={{ ...styles.input, ...styles.shortInput}}
                   className="next-input-single"
-                  addonTextAfter="室" 
+                 addonTextAfter="房间" 
                 />
               </IceFormBinder>
+           
+
             </Col>
           </Row>
           
@@ -372,7 +383,7 @@ const styles = {
     width: '100px',
   },
   shortInput: {
-    width: '60px',
+    width: '100px',
   },
   sex: {
     width: '100px',
